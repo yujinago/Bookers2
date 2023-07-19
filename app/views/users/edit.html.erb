@@ -2,6 +2,22 @@
     <div class="row">
         <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
             <h1>User info</h1>
+            <% if @user_find.errors.any? %>
+                <div id="error_explanation">
+                    <h3>
+                        <% if @user_find.errors.count == 1 %>
+                            <%= @user_find.errors.count %> error prohibited this obj from being saved:
+                        <% else %>
+                            <%= @user_find.errors.count %> errors prohibited this obj form being saved:
+                        <% end %>
+                    </h3>
+                    <ul>
+                        <% @user_find.errors.full_messages.each do |message| %>
+                            <li><%= message %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            <% end %>
             <%= form_with model: @user_find do |f| %>
                 <div class="form-group">
                     <label for="user_name">Name</label>
